@@ -1,11 +1,11 @@
 {
-  "name": "logger",
+  "name": "amuyu-logger",
   "version": "1.0.0",
   "description": "Simple log for node",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npmlog.git"
+    "url": "https://github.com/amuyu/node-logger.git"
   },
   "scripts": {
     "test": "node_modules/.bin/tape test/*.js"
