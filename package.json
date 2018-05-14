@@ -1,0 +1,28 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "Simple log for node",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npmlog.git"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/tape test/*.js"
+  },
+  "author": "amuyu",
+  "license": "MIT",
+  "dependencies": {
+    "console-control-strings": "^1.1.0",
+    "error-stack-parser": "^2.0.1"
+  },
+  "keywords": [
+    "console.log",
+    "log",
+    "logger",
+    "logging"
+  ],
+  "devDependencies": {
+    "tape": "^4.9.0"
+  }
+}
