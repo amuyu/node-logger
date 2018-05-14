@@ -35,26 +35,31 @@ Logger.prototype.addLevel = function(lvl, style) {
 }
 
 function write(args, style) {
-  console.log.apply(console, format(args, style))
+  console.log(format(args, style))
 }
 
 function format(args, style) {
-  var list = Array.prototype.slice.call(args);
+  var output = '';
+  var message = util.format.apply(util, args);
 
   // add header
-  list.unshift(header() );
+  output += header();
 
   // add style
   style = style || {}
   var settings = []
   if (style.fg) settings.push(style.fg)
   if (style.bg) settings.push('bg' + style.bg[0].toUpperCase() + style.bg.slice(1))
+
+  // add color
+  output += message;
   if (settings.length) {
-    list.unshift(consoleControl.color(settings))
-    list.push(consoleControl.color('reset'))
+    output = consoleControl.color(settings) + ' ' + output
+    output += ' '
+    output += consoleControl.color('reset')
   }
 
-  return list
+  return output
 }
 
 function header() {
@@ -66,7 +71,7 @@ function header() {
   if (funcName === undefined) funcName = parse[5].functionName
   var lineNumber = caller.lineNumber
 
-  var titleFormat = "%s: %s(%d)"
+  var titleFormat = "%s: %s(%d) "
   return util.format(titleFormat, fileName, funcName, lineNumber)
 }
 
