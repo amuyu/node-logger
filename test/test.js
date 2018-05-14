@@ -1,10 +1,10 @@
-var log = require('../index.js');
+var logger = require('../index.js');
 const tape = require('tape')
 
 
 
 
-tape('log.log()', function (assert) {
+tape('logger.log()', function (assert) {
 
   var resultExpect = 'test.js: Test.<anonymous>(19) hello\n';
 
@@ -16,14 +16,14 @@ tape('log.log()', function (assert) {
   }
 
   process.stdout.write = writeSpy;
-  log.log('hello')
+  logger.log('hello')
 
   process.stdout.write = stdout_write;
   assert.equal(writtenValue, resultExpect,'same');
   assert.end()
 });
 
-tape('log.info()', function (assert) {
+tape('logger.info()', function (assert) {
 
   var resultExpect = '\u001b[32m test.js: Test.<anonymous>(38) hello \u001b[0m\n';
 
@@ -35,14 +35,14 @@ tape('log.info()', function (assert) {
   }
 
   process.stdout.write = writeSpy;
-  log.info('hello')
+  logger.info('hello')
 
   process.stdout.write = stdout_write;
   assert.equal(writtenValue, resultExpect,'same');
   assert.end()
 });
 
-tape('log.error()', function (assert) {
+tape('logger.error()', function (assert) {
 
   var resultExpect = '\u001b[31;40m test.js: Test.<anonymous>(57) hello \u001b[0m\n';
 
@@ -54,14 +54,14 @@ tape('log.error()', function (assert) {
   }
 
   process.stdout.write = writeSpy;
-  log.error('hello')
+  logger.error('hello')
 
   process.stdout.write = stdout_write;
   assert.equal(writtenValue, resultExpect,'same');
   assert.end()
 });
 
-tape('log.warn()', function (assert) {
+tape('logger.warn()', function (assert) {
 
   var resultExpect = '\u001b[30;43m test.js: Test.<anonymous>(76) hello \u001b[0m\n';
 
@@ -73,14 +73,14 @@ tape('log.warn()', function (assert) {
   }
 
   process.stdout.write = writeSpy;
-  log.warn('hello')
+  logger.warn('hello')
 
   process.stdout.write = stdout_write;
   assert.equal(writtenValue, resultExpect,'same');
   assert.end()
 });
 
-tape('log.addLevel()', function (assert) {
+tape('logger.addLevel()', function (assert) {
 
   var resultExpect = '\u001b[32;40m test.js: Test.<anonymous>(96) hello \u001b[0m\n';
 
@@ -92,8 +92,8 @@ tape('log.addLevel()', function (assert) {
   }
 
   process.stdout.write = writeSpy;
-  log.addLevel('test', { fg: 'green', bg: 'black' })
-  log.test('hello')
+  logger.addLevel('test', { fg: 'green', bg: 'black' })
+  logger.test('hello')
 
   process.stdout.write = stdout_write;
   assert.equal(writtenValue, resultExpect,'same');
